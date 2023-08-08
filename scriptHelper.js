@@ -37,29 +37,53 @@ function validateInput(testInput) {
    
 }
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   const pilot = document.getElementById('pilotName');
-   const copilot = document.getElementById('copilotName');
-   const fuelLevel = document.getElementById('fuelLevel');
-   const cargoLevel = document.getElementById('cargoMass');
+function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
+    const pilotStatus = document.getElementById('pilotStatus');
+    const copilotStatus = document.getElementById('copilotStatus');
+    const fuelStatus = document.getElementById('fuelStatus');
+    const cargoStatus = document.getElementById('cargoStatus');
+    const launchStatus = document.getElementById('launchStatus');
+//console.log(pilot)
+   if(validateInput(pilot) === 'Empty' || validateInput(copilot) === 'Empty' || validateInput(fuelLevel) === 'Empty' || validateInput(cargoMass) === 'Empty') {
+window.alert("All fields required");
+   }
 
-   if(validateInput(pilot) === '' || validateInput(copilot) === '' || validateInput(fuelLevel) === '' || validateInput(cargoLevel) === '') {
-alert("All field required");
+else if (validateInput(pilot) === 'Is a Number' || validateInput(copilot) === 'Is a Number' || validateInput(fuelLevel) === 'Not a Number' || validateInput(cargoMass) === 'Not a Number') {
+window.alert("Correct information for each field is required");
 
-if()
-
-
+   } else { 
+       list.style.visibility = 'visible';
+       pilotStatus.innerHTML = `Pilot ${pilot}`;
+       copilotStatus.innerHTML = `Copilot ${copilot}`;
+            if(fuelLevel < 10000) {
+            //list.style.visibility = 'visible';
+            launchStatus.style.color = 'red';
+            console.log(launchStatus.style.color);
+            fuelStatus.innerHTML = "Fuel level is NOT high enough for launch";
+            launchStatus.innerHTML = "Shuttle Not Ready For Launch";
+            //launchStatus.style.color = '#C7254H';
+       
+            } else if (cargoMass > 10000) {
+              cargoStatus.innerHTML = 'Cargo mass is too high for takeoff';
+              launchStatus.innerHTML = 'Shuttle Not Ready For Launch';
+              launchStatus.style.color = '#C7254E';
+            } else {
+                launchStatus.stlye.color = '#419F6A';
+                launchStatus.innerHTML = 'Shuttle Is Ready For Launch';
+            }
    }
    
+
 }
 
 async function myFetch() {
-    let planetsReturned;
+    // let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
-        });
+    // planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
+    //     return response.json();
+    //     });
 
-    return planetsReturned;
+    // return planetsReturned;
 }
 
 function pickPlanet(planets) {
