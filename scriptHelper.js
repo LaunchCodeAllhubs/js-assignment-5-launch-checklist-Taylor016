@@ -3,18 +3,19 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
-}
+   let div = document.getElementById("missionTarget");
+   div.innerHTML = 
+//                 <h2>Mission Destination</h2>
+//                 <ol>
+//                     <li>Name: </li>
+//                     <li>Diameter: </li>
+//                     <li>Star: ${star}</li>
+//                     <li>Distance from Earth: </li>
+//                     <li>Number of Moons: </li>
+//                 </ol>
+//                 <img src="">;
+   
+// }
 
 function validateInput(testInput) {
     let numberInput = Number(testInput);
@@ -68,7 +69,7 @@ window.alert("Correct information for each field is required");
               launchStatus.innerHTML = 'Shuttle Not Ready For Launch';
               launchStatus.style.color = '#C7254E';
             } else {
-                launchStatus.stlye.color = '#419F6A';
+                launchStatus.style.color = '#419F6A';
                 launchStatus.innerHTML = 'Shuttle Is Ready For Launch';
             }
    }
@@ -77,16 +78,22 @@ window.alert("Correct information for each field is required");
 }
 
 async function myFetch() {
-    // let planetsReturned;
+    let planetsReturned;
 
-    // planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
-    //     return response.json();
-    //     });
+    planetsReturned = await fetch('https://handlers.education.launchcode.org/static/planets.json').then( function(response) {
+        if(response.status >= 400) {
+         throw new Error("Error");
+        } else { 
+        return response.json();
+        }
+        });
 
-    // return planetsReturned;
+    return planetsReturned;
 }
 
 function pickPlanet(planets) {
+    
+    
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
