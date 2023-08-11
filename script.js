@@ -19,15 +19,17 @@ window.addEventListener("load", function() {
      //console.log(pilotName);
      formSubmission(document, list, pilotName.value, copilotName.value, fuelLevel.value, cargoMass.value)
     });
-   let listedPlanets;
+   let listedPlanets = planets; //is this correct?
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
+   let listedPlanetsResponse; // this will be a promise? will it be await fecth(url)?
    listedPlanetsResponse.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);
    }).then(function () {
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+       // pickPlanet(planets);
+       // addDestinationInfo(selectedPlanet); ?? could i not just do addDestinationInfo(pickPlanet)?
    })
    
 });
